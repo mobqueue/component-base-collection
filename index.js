@@ -5,10 +5,10 @@
 
 var Backbone = require('backbone')
   , BackboneCollection = require('backbone-collection')
-  , BaseModel = require('component-base-model')
-  , debug = require('debug')('component-base-collection')
-  , pusher = require('component-pusher')
-  , XHR = require('component-xhr');
+  , BaseModel = require('base-model')
+  , debug = require('debug')('base-collection')
+  , pusher = require('pusher')
+  , XHR = require('xhr');
 
 /**
  * Expose `BaseCollection`
