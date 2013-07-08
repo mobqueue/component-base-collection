@@ -1,0 +1,22 @@
+{
+  "name": "base-collection",
+  "repo": "mobqueue/component-base-collection",
+  "description": "Base collections for component(1)",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "mobqueue/component-base-model": "*"
+  , "mobqueue/component-pusher": "*"
+  , "mobqueue/component-xhr": "*"
+  , "trevorgerhardt/backbone": "*"
+  , "trevorgerhardt/backbone-collection": "*"
+  , "visionmedia/debug": "*"
+
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
