@@ -72,7 +72,7 @@ BaseCollection.prototype.sync = function(method, model, options) {
  */
 
 function subscribe(user, collection) {
-  var channelName = user.name + '-' + user.instance.id + '-' + collection.name
+  var channelName = user.instance.name + '-' + user.instance.id + '-' + collection.name
     , channel = pusher.channel(channelName);
 
   if (!channel) {
