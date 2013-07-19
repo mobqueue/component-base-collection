@@ -29,15 +29,40 @@ BaseCollection.prototype.initialize = function() {
     this.user.isLoggedIn(function(err, newUser) {
       if (err || !newUser) {
         self.user.on('login', function() {
-          subscribe(self.user, self);
+          self.channelName = subscribe(self.user, self);
+          self.activated = true;
         });
       } else {
-        subscribe(self.user, self);
+        self.channelName = subscribe(self.user, self);
+        self.activated = true;
       }
     });
   }
 
+  function fetch() {
+    if (self.activated) {
+      setTimeout(function() {
+        self.fetch({ reset: true });
+      }, 0);
+    }
+  }
+
+  document.addEventListener('online', fetch, false);
+  document.addEventListener('resume', fetch, false);
+
   this.postInitialize();
+};
+
+/**
+ * Destroy
+ */
+
+BaseCollection.prototype.destroy = function() {
+  // unsubscribe
+  pusher.unsubscribe(channelName);
+
+  // activated
+  this.activated = false;
 };
 
 /**
@@ -94,4 +119,6 @@ function subscribe(user, collection) {
   user.on('logout', function() {
     pusher.unsubscribe(channelName);
   });
+
+  return channelName;
 }
