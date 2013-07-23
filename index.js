@@ -40,11 +40,11 @@ BaseCollection.prototype.initialize = function() {
   }
 
   function fetch() {
-    if (self.activated) {
-      setTimeout(function() {
+    setTimeout(function() {
+      if (self.activated) {
         self.fetch({ reset: true });
-      }, 0);
-    }
+      }
+    }, 0);
   }
 
   document.addEventListener('online', fetch, false);
@@ -59,7 +59,9 @@ BaseCollection.prototype.initialize = function() {
 
 BaseCollection.prototype.destroy = function() {
   // unsubscribe
-  pusher.unsubscribe(channelName);
+  if (this.channelName) {
+    pusher.unsubscribe(this.channelName);
+  }
 
   // activated
   this.activated = false;
