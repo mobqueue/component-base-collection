@@ -65,6 +65,9 @@ BaseCollection.prototype.destroy = function() {
 
   // activated
   this.activated = false;
+
+  // reset
+  this.reset({}, { silent: true });
 };
 
 /**
@@ -87,7 +90,9 @@ BaseCollection.prototype.sync = function(method, model, options) {
   }
 
   options.headers = XHR.getHeaders();
-  options.xhrFields = { withCredentials: window.device === undefined };
+  options.xhrFields = {
+    withCredentials: window.device === undefined && options.url.indexOf('private') !== -1
+  };
 
   debug('sync', method, model, options);
 
